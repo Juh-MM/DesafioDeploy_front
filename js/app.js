@@ -1,3 +1,4 @@
+
 const API_URL = 'https://desafiodeploy-back.onrender.com/api/complaints';
 
 document.getElementById('complaintForm').addEventListener('submit', async (e) => {
