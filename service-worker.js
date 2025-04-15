@@ -10,7 +10,12 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
-    e.respondWith(
-        caches.match(e.request).then((response) => response || fetch(e.request))
-    );
+    const url = new URL(e.request.url);
+
+    // Só intercepta requisições do mesmo domínio (mesmo host)
+    if (url.origin === self.location.origin) {
+        e.respondWith(
+            caches.match(e.request).then((response) => response || fetch(e.request))
+        );
+    }
 });
